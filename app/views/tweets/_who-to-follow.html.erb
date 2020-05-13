@@ -1,57 +1,40 @@
 <div class="column">
 	<nav class="panel">
 		<p class="panel-heading">Who to Follow</p>
-	
-	<div class="panel-block">
-		<article class="media">
-			<div class="media-left">
-				<figure class="image is-32x32">
-					<img src="https://bulma.io/images/placeholders/64x64.png">
-				</figure>
-			</div>
-			<div class="media-content">
-				<div class="content">
-					<p>
-						<strong>John Smith</strong>
-						<small>@johnsmith</small>
-					</p>
+
+		<% @users.each do |user| %>
+			<% if @users.count == 1 %>
+				<div class="panel-block">
+					<article class="media">
+						<div class="media-content">
+							<div class="content">
+								<p>
+									<small style="color: gray;">No one here</small><br/>
+								</p>
+							</div>
+						</div>
+					</article>
 				</div>
-			</div>
-		</article>
-	</div>
-		<div class="panel-block">
-		<article class="media">
-			<div class="media-left">
-				<figure class="image is-32x32">
-					<img src="https://bulma.io/images/placeholders/64x64.png">
-				</figure>
-			</div>
-			<div class="media-content">
-				<div class="content">
-					<p>
-						<strong>John Smith</strong>
-						<small>@johnsmith</small>
-					</p>
+			<% end %>
+			<% unless user == current_user %>
+				<div class="panel-block">
+					<article class="media">
+						<div class="media-left">
+							<figure class="image is-32x32">
+								<%= gravatar_image_tag(user.email, size:64, alt:user.name) %>
+							</figure>
+						</div>
+						<div class="media-content">
+							<div class="content">
+								<p>
+									<strong><%= user.name %></strong><br/>
+									<small>@<%= user.username%></small><br/>
+								</p>
+							</div>
+						</div>
+					</article>
 				</div>
-			</div>
-		</article>
-	</div>
-		<div class="panel-block">
-		<article class="media">
-			<div class="media-left">
-				<figure class="image is-32x32">
-					<img src="https://bulma.io/images/placeholders/64x64.png">
-				</figure>
-			</div>
-			<div class="media-content">
-				<div class="content">
-					<p>
-						<strong>John Smith</strong>
-						<small>@johnsmith</small>
-					</p>
-				</div>
-			</div>
-		</article>
-	</div>
+			<% end %>
+		<% end %>
 	</nav>
 </div>
